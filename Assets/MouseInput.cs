@@ -30,7 +30,7 @@ public class MouseInput : MonoBehaviour {
                 Vector3 newPosition = Camera.main.ScreenToWorldPoint(mousePosition);
                 newPosition.z = 0;
                 GameObject target = Instantiate(targetCursor, newPosition, Quaternion.identity);
-                GameObject.Find("Player").GetComponent<PlayerPositionAdjustment>().AddTargetCursor(target);
+                //GameObject.Find("Player").GetComponent<PlayerPositionAdjustment>().AddTargetCursor(target);
                 target.transform.parent = GameObject.Find("TargetCursors").transform;
                 //targetCursor.transform.position = newPosition;
             }

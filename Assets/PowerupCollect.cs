@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TargetCursorTrigger : MonoBehaviour {
+public class PowerupCollect : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col)
     {
-        Debug.Log("collision");
         if(col.name == "Player")
         {
-            //col.GetComponent<PlayerPositionAdjustment>().NextTargetCursor();
+            col.GetComponent<Powerup>().homing = true;
             Destroy(gameObject);
         }
     }

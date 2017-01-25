@@ -11,6 +11,7 @@ public class CollectCode : MonoBehaviour {
         if(col.name == "Player")
         {
             GameObject.Find("GameManager").GetComponent<GameManagerScript>().score += value;
+            GameObject.Find("Main Camera").GetComponent<CameraShake>().Shake(0.2f, 0.2f);
             Destroy(gameObject);
         }
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerPositionAdjustment : MonoBehaviour {
 
     public float catchupSpeed = 2f;
-    public Vector3 targetPosition;
+
 
     public float bounceSpeed = 0.1f;
 
@@ -14,34 +14,45 @@ public class PlayerPositionAdjustment : MonoBehaviour {
     public Vector3 originalPosition;
     private float bounceTimer = 0f;
 
-    public GameObject targetCursor;
-
-
-    public List<GameObject> targetCursors;
+    private GameObject indicator;
+    public bool gravityNormal = true;
 
     void Start()
     {
         catchupSpeed = GameObject.Find("GameManager").GetComponent<GameManagerScript>().catchupSpeed;
+        indicator = GameObject.Find("Indicator");
     }
 
 	// Update is called once per frame
 	void Update () {
 		if(transform.position.x < 0)
         {
-            transform.position += Vector3.right * Time.deltaTime;
+            GetComponent<Rigidbody>().AddForce(Vector3.right * 10 * Time.deltaTime);
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Physics.gravity = -Physics.gravity;
+            gravityNormal = !gravityNormal;
+            indicator.transform.eulerAngles += new Vector3(0, 0, 180);
+        }
+
+
+
+        /*
         if(targetCursor != null)
         {
             Vector3 movementVector = targetCursor.transform.position - transform.position;
             GetComponent<Rigidbody>().AddForce(movementVector * 10f);
         }
-        /*
+        
         if(GetComponent<Rigidbody>().velocity.magnitude < 1f)
         {
             ManualNextTargetCursor();
         }*/
 	}
 
+    /*
     void ManualNextTargetCursor()
     {   
         Destroy(targetCursor);
@@ -77,6 +88,6 @@ public class PlayerPositionAdjustment : MonoBehaviour {
             }
             yield return new WaitForSeconds(0.2f);
         }
-    }
+    }*/
 
 }
