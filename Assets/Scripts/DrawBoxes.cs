@@ -41,7 +41,8 @@ public class DrawBoxes : MonoBehaviour {
         //powerupSpawned = true;
         spawnPosition.y = Mathf.Clamp(spawnPosition.y + Random.Range(1f, 3f) + 10f, yMinGlobal, yMaxGlobal);
 
-        GameObject temp = Instantiate(collectible, spawnPosition, Quaternion.identity);
+        GameObject temp = Instantiate(powerup, spawnPosition, Quaternion.identity);
+        Debug.Log("Spawned powerup");
         
     }
 
@@ -50,7 +51,7 @@ public class DrawBoxes : MonoBehaviour {
         while (true)
         {
             SpawnPowerup();
-            yield return new WaitForSeconds(Random.Range(5f, 10f));
+            yield return new WaitForSeconds(Random.Range(15f, 30f));
         }
     }
 
